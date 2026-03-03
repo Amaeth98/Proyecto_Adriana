@@ -2,7 +2,7 @@ services:
   web:
     build:
       context: ${CONTEXTO}
-      dockerfile: ./dockerfiles/1ubbase/Dockerfile
+      dockerfile: ./dockerfiles/1ubbase/dockerfile
     container_name: ctlubase
     image: adriana/ubbase
     ports:

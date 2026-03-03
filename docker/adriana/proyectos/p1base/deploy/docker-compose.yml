@@ -1,0 +1,22 @@
+services:
+  web:
+    build:
+      context: ${CONTEXTO}
+      dockerfile: ./dockerfiles/01_ubase/Dockerfile
+    container_name: ctlinasbase
+    image: adriana/ubbase
+    ports:
+      - 3456:22
+    env_file:
+      - ./.env
+    volumes:
+      - ./logs:/root/logs
+    networks:
+      pbase_network:
+        ipv4_address: 192.168.20.3
+networks:
+  pbase_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.20.0/24

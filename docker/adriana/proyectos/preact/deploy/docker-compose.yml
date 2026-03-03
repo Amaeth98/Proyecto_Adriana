@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  inicio:
+    image: adri/react:latest
+    container_name: ctl_react
+    build:
+      context: ${CONTEXTO}
+      dockerfile: ./dockerfiles/4react/Dockerfile
+    env_file: 
+      - .env
+    ports:
+      - ${PORT_WEB}:3000   # App Vite (dev/preview)
+      - ${PORT_WWW}:80        # Nginx (si tu capa lo usa)
+      - ${PORT_SSH}:22        # SSH (si tu imagen lo trae)
+    volumes:
+      - ./logs:/root/logs
+    networks:
+      - red_adriana
+    restart: always
+
+networks:
+  red_adriana:
+    external: true

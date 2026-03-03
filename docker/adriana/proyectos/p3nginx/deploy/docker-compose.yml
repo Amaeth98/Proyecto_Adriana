@@ -1,0 +1,13 @@
+services:
+  web:
+    build:
+      context: ${CONTEXTO}
+      dockerfile: ./dockerfiles/3nginx/Dockerfile
+    container_name: ctl_nginx
+    image: adri/nginx:latest
+    ports:
+      - 3457:22
+    env_file:
+      - ./.env
+    volumes:
+      - ./logs:/root/logs

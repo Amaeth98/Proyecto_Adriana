@@ -1,0 +1,11 @@
+FROM adri/react:latest
+
+# No hace falta Node, ya está en 4react
+# No copiamos el proyecto, ya está en /app/inicio en 4react
+
+RUN mkdir -p /root/admin/inicio
+COPY ./dockerfiles/5inicio/admin/start.sh /root/admin/inicio/start.sh
+RUN chmod +x /root/admin/inicio/start.sh
+
+EXPOSE 3000
+ENTRYPOINT ["/root/admin/inicio/start.sh"]

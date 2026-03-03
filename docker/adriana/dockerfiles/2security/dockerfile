@@ -1,0 +1,14 @@
+# Heredar de tu imagen 01_ubase (cambia el nombre si es distinto en tu local)
+FROM adri/ubbase 
+
+# Crear directorio para los scripts de esta capa
+RUN mkdir -p /root/admin/security
+
+# Copiar el script a su nueva ruta estructurada
+COPY ./dockerfiles/2security/admin/start.sh /root/admin/security/start.sh
+
+# Dar permisos de ejecución
+RUN chmod +x /root/admin/security/start.sh
+
+# Entrypoint apuntando al nuevo script
+ENTRYPOINT ["/root/admin/security/start.sh"]

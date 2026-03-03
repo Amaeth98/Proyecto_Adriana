@@ -1,0 +1,13 @@
+FROM adri/nginx:latest 
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs
+
+WORKDIR /app/inicio
+COPY proyectos/inicio/package*.json ./
+# Instalamos aquí para que 'vite' ya exista en la imagen
+
+COPY proyectos/inicio ./
+
+RUN mkdir -p /root/admin/react
+COPY ./dockerfiles/4react/admin/start.sh /root/admin/react/start.sh
+RUN chmod +x /root/admin/react/start.sh
+ENTRYPOINT ["/root/admin/react/start.sh"]

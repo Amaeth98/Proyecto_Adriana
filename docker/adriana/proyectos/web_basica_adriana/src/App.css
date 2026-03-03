@@ -1,0 +1,568 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-principal: #0d6efd;
+  --color-secundario: #009688;
+  --color-fondo: #f3f4f6;
+  --color-texto: #222;
+  --radius-base: 0.85rem;
+  --shadow-suave: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: radial-gradient(circle at top left, #e0f2fe, #f5f5f5);
+  color: var(--color-texto);
+}
+
+body, #root, .App {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* ---------- APP GENERAL ---------- */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- HEADER ---------- */
+.app-header {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  background-image: url("/Imagen_header.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.55)
+  );
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+}
+
+.header-content h1 {
+  font-size: 2.8rem;
+  font-weight: 600;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+.header-content p {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  opacity: 0.95;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar-custom {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  background-color: #0f172a;
+}
+
+.nav-items {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: center;
+  padding-left: 1rem; 
+}
+
+.navbar-brand {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.nav-link {
+  padding: 0.4rem 0.75rem;
+}
+
+.nav-icon-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  line-height: 1;
+}
+
+.nav-icon {
+  font-size: 1.25rem;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+
+.nav-link:hover .nav-icon-text {
+  transform: translateY(-1px);
+  transition: transform 0.15s ease;
+}
+
+.navbar-inner {
+  padding-inline: 1rem;
+}
+
+.navbar-logo {
+  margin-left: 0.25rem;
+}
+
+/* ---------- LAYOUT PRINCIPAL ---------- */
+.app-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1.2fr);
+  gap: 1.75rem;
+  padding: 1.75rem 2rem 2.25rem;
+  flex: 1;
+  width: 100%;
+}
+
+.main-section,
+.main-aside {
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+/* ---------- TITULOS SECCIÓN ---------- */
+.main-section h2,
+.main-section h3 {
+  font-weight: 600;
+}
+
+.main-section h2 {
+  margin-bottom: 1rem;
+}
+
+.main-section h3 {
+  margin: 1.5rem 0 1rem;
+}
+
+/* ---------- CARDS ---------- */
+.modern-card {
+  border: none !important;
+  border-radius: 1rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: 0.25s ease;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.modern-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
+}
+
+.service-card-img {
+  width: 100%;
+  height: 200px;        
+  object-fit: cover;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.modern-card .card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.modern-card-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.modern-card-text {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+  flex-grow: 1; 
+}
+
+.modern-card button {
+  border-radius: 999px;
+  padding-inline: 1.3rem;
+  font-weight: 500;
+  margin-top: auto;
+}
+
+/* ---------- BOTONES ---------- */
+.btn {
+  border-radius: 999px;
+  padding-inline: 1.1rem;
+  font-weight: 500;
+}
+
+/* ---------- CARRUSEL ANDALUCÍA ---------- */
+.andalucia-carousel {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.18);
+  margin-bottom: 2.5rem;
+  background: transparent;
+}
+
+.andalucia-carousel .carousel-inner {
+  background: transparent;
+  border-radius: 1rem;
+}
+
+.andalucia-carousel .carousel-item img {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.andalucia-carousel-img {
+  height: 260px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.andalucia-carousel .carousel-caption {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0)
+  );
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-bottom: 1.5rem;
+}
+
+.andalucia-carousel .carousel-indicators {
+  bottom: 10px;
+}
+
+.andalucia-carousel .carousel-indicators [data-bs-target] {
+  width: 30px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  margin: 0 4px;
+  transition: 0.3s ease;
+}
+
+.andalucia-carousel .carousel-indicators .active {
+  background-color: #0d6efd;
+  opacity: 1;
+}
+
+.andalucia-carousel .carousel-control-prev-icon,
+.andalucia-carousel .carousel-control-next-icon {
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.7));
+}
+
+/* ---------- ASIDE ---------- */
+.aside-card {
+  background-color: #ffffff;
+  padding: 1.2rem 1.25rem 1.3rem;
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-suave);
+  margin-bottom: 1.25rem;
+  border-left: 4px solid var(--color-secundario);
+}
+
+.aside-title {
+  font-size: 1.05rem;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* ---------- YOUTUBE ---------- */
+.youtube-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-suave);
+}
+
+.youtube-container iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ---------- FOOTER ---------- */
+.app-footer {
+  background: linear-gradient(to right, #0f172a, #111827);
+  color: #e5e7eb;
+  padding: 0.9rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.footer-left {
+  font-size: 0.9rem;
+}
+
+.footer-right {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.footer-icon {
+  font-size: 1.4rem;
+  color: #e5e7eb;
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+
+.footer-icon:hover {
+  transform: translateY(-2px) scale(1.05);
+  color: var(--color-principal, #3b82f6);
+}
+
+@media (max-width: 600px) {
+  .app-footer {
+    justify-content: center;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+    padding-inline: 1.25rem;
+  }
+
+  .app-header {
+    padding-inline: 1.25rem;
+  }
+
+  .app-header h1 {
+    font-size: 2.1rem;
+  }
+
+  .app-footer {
+    padding-inline: 1.25rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar-brand {
+    font-size: 0.95rem;
+  }
+
+  .app-header {
+    padding: 3rem 1rem;
+  }
+
+  .app-layout {
+    padding-inline: 1rem;
+  }
+}
+
+/* ---------- TABLA HEROES ---------- */
+
+.heroes-wrapper {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.12);
+  border-left: 5px solid #3b82f6;
+  background: none;
+}
+
+.heroes-wrapper h3 {
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.heroes-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  table-layout: fixed;
+}
+
+.heroes-table th:nth-child(1),
+.heroes-table td:nth-child(1) {
+  width: 25%;
+}
+
+.heroes-table th:nth-child(2),
+.heroes-table td:nth-child(2) {
+  width: 25%;
+}
+
+.heroes-table th:nth-child(3),
+.heroes-table td:nth-child(3) {
+  width: 25%;
+}
+
+.heroes-table th:nth-child(4),
+.heroes-table td:nth-child(4) {
+  width: 25%;
+} 
+
+.heroes-table thead {
+  background: #1e293b;
+  color: white;
+}
+
+.heroes-table th,
+.heroes-table td {
+  padding: 0.75rem 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.heroes-table td {
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
+  vertical-align: middle;
+}
+
+.heroes-table tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.heroes-table tbody tr:hover {
+  background: #e2e8f0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* ---------- USUARIO AVATAR ---------- */
+
+.usuario-avatar-page {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.usuario-avatar-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: #ffffff;
+  padding: 1.8rem 2.2rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+  width: 100%;
+  max-width: 900px;
+}
+
+.usuario-avatar-circle {
+  width: 70px;
+  height: 70px;
+  font-size: 1.8rem;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white;
+}
+
+.usuario-avatar-text h2 {
+  margin: 0 0 0.4rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.usuario-avatar-text p {
+  margin: 0;
+  font-size: 0.98rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.usuario-avatar-text p + p {
+  margin-top: 0.4rem;
+}
+
+/* ---------- NOTICIAS ---------- */
+
+.noticias-layout {
+  margin-top: 1.5rem;
+}
+
+.noticias-menu {
+  display: flex;
+  gap: 1rem;
+  margin: 0.8rem 0 1.5rem;
+}
+
+.noticias-menu a {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: #e5e7eb;
+  text-decoration: none;
+  color: #111827;
+  font-size: 0.9rem;
+  transition: 0.2s;
+}
+
+.noticias-menu a:hover {
+  background: #0d6efd;
+  color: white;
+}
+
+.noticia-caja {
+  background: #ffffff;
+  padding: 1.3rem 1.6rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.12);
+}
+
+/* ---------- 404 ---------- */
+
+.pagina404 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.pagina-404-img {
+  width: 500px;
+  max-width: 90%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}

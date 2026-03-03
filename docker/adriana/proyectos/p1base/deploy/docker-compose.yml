@@ -8,7 +8,7 @@ services:
     ports:
       - 3456:22
     env_file:
-      - ./.env
+      - .env
     volumes:
       - ./logs:/root/logs
     networks:

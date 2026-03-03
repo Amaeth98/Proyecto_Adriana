@@ -1,5 +1,5 @@
-# Heredar de tu imagen 01_ubase (cambia el nombre si es distinto en tu local)
-FROM adri/ubbase 
+# Heredar de tu imagen 1ubbase
+FROM adri/ubbase:latest
 
 # Crear directorio para los scripts de esta capa
 RUN mkdir -p /root/admin/security

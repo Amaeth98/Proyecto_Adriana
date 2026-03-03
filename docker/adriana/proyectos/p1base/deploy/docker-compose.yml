@@ -4,7 +4,7 @@ services:
       context: ${CONTEXTO}
       dockerfile: ./dockerfiles/1ubbase/dockerfile
     container_name: ctlubase
-    image: adriana/ubbase
+    image: adri/ubbase:latest
     ports:
       - "${PORT_SSH}:22"
     env_file:

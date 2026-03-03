@@ -10,7 +10,7 @@ services:
     env_file: 
       - .env
     ports:
-      - ${PORT_WEB}:3000   # App Vite (dev/preview)
+      - ${PORT_NODE}:3000   # App Vite (dev/preview)
       - ${PORT_WWW}:80        # Nginx (si tu capa lo usa)
       - ${PORT_SSH}:22        # SSH (si tu imagen lo trae)
     volumes:

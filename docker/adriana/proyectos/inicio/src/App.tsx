@@ -21,18 +21,18 @@ export default function App() {
       <main className="grid">
         <Card
           title="web_basica_adriana"
-          desc="React (puerto 3001)"
-          href="http://localhost:3001"
+          desc="React (puerto 3111)"
+          href="http://localhost:3111"
         />
         <Card
           title="Pokemon_Next_Adriana"
-          desc="Next.js (puerto 3002)"
-          href="http://localhost:3002"
+          desc="Next.js (puerto 3112)"
+          href="http://localhost:3112"
         />
         <Card
           title="Nest_API_Adriana"
-          desc="Nest API (puerto 3003)"
-          href="http://localhost:3003"
+          desc="Nest API (puerto 3113)"
+          href="http://localhost:3113"
         />
       </main>
     </div>

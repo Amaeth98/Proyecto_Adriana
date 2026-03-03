@@ -6,7 +6,7 @@ services:
     container_name: ctlubase
     image: adriana/ubbase
     ports:
-      - 3456:22
+      - "${PORT_SSH}:22"
     env_file:
       - .env
     volumes:

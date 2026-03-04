@@ -1,5 +1,6 @@
-# Heredar de tu imagen 2security
 FROM adri/security:latest
+
+RUN apt-get update && apt-get install -y nginx && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /root/admin/nginx
 COPY ./dockerfiles/3nginx/admin/start.sh /root/admin/nginx/start.sh

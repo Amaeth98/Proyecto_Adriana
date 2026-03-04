@@ -1,37 +1,31 @@
 #!/bin/bash
 set -e
 
-# Asegurar carpeta de logs (evita: tee: /root/logs/informe.log: No such file or directory)
 mkdir -p /root/logs
 touch /root/logs/informe.log
+LOG="/root/logs/informe.log"
 
-# 1. EJECUTAMOS LA CAPA ANTERIOR
-echo "[REACT] Ejecutando capa anterior (Nginx)..."
+echo "[REACT] Ejecutando capa anterior (Nginx)..." | tee -a "$LOG"
 if [ -f /root/admin/nginx/start.sh ]; then
     bash /root/admin/nginx/start.sh
 else
-    echo "[REACT] ADVERTENCIA: No se encontró la capa Nginx." | tee -a /root/logs/informe.log
+    echo "[REACT] ADVERTENCIA: No se encontró la capa Nginx." | tee -a "$LOG"
 fi
 
-sleep 2
+APP_DIR="/app/inicio"
+echo "[REACT] Preparando entorno en ${APP_DIR}..." | tee -a "$LOG"
+cd "$APP_DIR"
 
-# 2. COMPILACIÓN Y ARRANQUE
-echo "[REACT] Preparando entorno..." | tee -a /root/logs/informe.log
-mkdir -p /app/webbasica
-cd /app/webbasica
-
-# Instalamos dependencias si no existen
 if [ ! -d "node_modules" ]; then
-    echo "[REACT] Instalando node_modules..." | tee -a /root/logs/informe.log
+    echo "[REACT] Instalando dependencias..." | tee -a "$LOG"
     npm install
 fi
 
-echo "[REACT] Compilando proyecto (npm run build)..." | tee -a /root/logs/informe.log
+echo "[REACT] Compilando (npm run build)..." | tee -a "$LOG"
 npm run build
 
-echo "[REACT] Iniciando Aplicación Vite en puerto 3000..." | tee -a /root/logs/informe.log
+echo "[REACT] Arrancando Vite en background (puerto 3000)..." | tee -a "$LOG"
 npm run dev -- --host 0.0.0.0 --port 3000 &
 
-# 3. MANTENEMOS VIVO
-echo "=== TODO LISTO Y FUNCIONANDO (CAPA 04) ===" | tee -a /root/logs/informe.log
-tail -f /dev/null
+echo "[REACT] Capa React finalizada (Vite en background)." | tee -a "$LOG"
+exit 0

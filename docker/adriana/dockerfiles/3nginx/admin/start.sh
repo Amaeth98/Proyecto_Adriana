@@ -1,15 +1,30 @@
 #!/bin/bash
 
-# 1. EJECUTAMOS LA CAPA ANTERIOR (Ciberseguridad)
-echo "[NGINX] Ejecutando capa anterior (Security)..."
+LOG="/root/logs/informe.log"
+
+echo "[NGINX] Ejecutando capa anterior (Security)..." | tee -a $LOG
+
+# Ejecutar capa anterior si existe
 if [ -f /root/admin/security/start.sh ]; then
     bash /root/admin/security/start.sh
 else
-    echo "[NGINX] ADVERTENCIA: No se encontró la capa security."
+    echo "[NGINX] ADVERTENCIA: No se encontró la capa Security." | tee -a $LOG
 fi
 
-# 2. HACEMOS LO NUESTRO (Nginx)
-echo "[NGINX] Iniciando Servidor Web..."
-service nginx start
+sleep 2
 
-# (Nota: No ponemos tail -f aquí porque lo pondremos en la última capa si hace falta)
+echo "[NGINX] Preparando servidor web..." | tee -a $LOG
+
+# Comprobar si nginx está instalado
+if ! command -v nginx >/dev/null 2>&1; then
+    echo "[NGINX] ERROR: nginx no está instalado." | tee -a $LOG
+    exit 1
+fi
+
+# Crear directorio logs si no existe
+mkdir -p /root/logs
+
+echo "[NGINX] Iniciando Servidor Web..." | tee -a $LOG
+
+# Arrancar nginx en primer plano (requerido para Docker)
+exec nginx -g "daemon off;"

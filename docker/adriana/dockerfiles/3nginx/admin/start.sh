@@ -28,4 +28,5 @@ fi
 echo "[NGINX] Iniciando Servidor Web..." | tee -a "$LOG"
 
 # Arrancar nginx en primer plano (requerido para Docker)
-exec nginx -g "daemon off;"
+exec nginx -g "daemon off;" &
+echo "[NGINX] Nginx arrancado en background." | tee -a "$LOG"

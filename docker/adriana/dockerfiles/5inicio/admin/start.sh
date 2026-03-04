@@ -13,7 +13,6 @@ else
 fi
 
 APP_DIR="/app/pinicio"   # <-- CAMBIA ESTO si tu carpeta es otra
-PORT=3000
 
 echo "[INICIO] Preparando entorno en $APP_DIR ..." | tee -a "$LOG"
 cd "$APP_DIR"
@@ -23,5 +22,5 @@ if [ ! -d node_modules ]; then
   npm install
 fi
 
-echo "[INICIO] Arrancando Vite en $PORT ..." | tee -a "$LOG"
-exec npm run dev -- --host 0.0.0.0 --port $PORT
+echo "[INICIO] Arrancando Vite en 3000 ..." | tee -a "$LOG"
+exec npm run dev -- --host 0.0.0.0 --port 3000

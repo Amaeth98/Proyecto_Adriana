@@ -15,7 +15,7 @@ main (){
     # Configurar sudo
     configurar_sudo
     # Mantener el contenedor en ejecución
-    #tail -f /dev/null
+    tail -f /dev/null
 }
 
 main

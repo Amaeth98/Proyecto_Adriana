@@ -24,8 +24,5 @@ fi
 echo "[REACT] Compilando (npm run build)..." | tee -a "$LOG"
 npm run build
 
-echo "[REACT] Arrancando Vite en background (puerto 3000)..." | tee -a "$LOG"
-npm run dev -- --host 0.0.0.0 --port 3000 &
-
-echo "[REACT] Capa React finalizada (Vite en background)." | tee -a "$LOG"
-exit 0
+echo "[REACT] Arrancando Vite en foreground (puerto 3000)..." | tee -a /root/logs/informe.log
+exec npm run dev -- --host 0.0.0.0 --port 3000

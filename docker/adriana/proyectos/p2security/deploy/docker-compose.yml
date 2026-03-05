@@ -2,7 +2,7 @@ services:
   web:
     build:
       context: ${CONTEXTO}
-      dockerfile: ./dockerfiles/2security/Dockerfile
+      dockerfile: ./dockerfiles/2security/dockerfile
     container_name: ctl_security
     image: adri/security:latest
     ports:

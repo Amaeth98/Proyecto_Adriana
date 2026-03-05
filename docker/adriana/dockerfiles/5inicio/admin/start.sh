@@ -5,15 +5,14 @@ mkdir -p /root/logs
 LOG="/root/logs/informe.log"
 touch "$LOG"
 
-echo "[INICIO] Ejecutando capa anterior (React)..." | tee -a "$LOG"
-if [ -f /root/admin/react/start.sh ]; then
-  bash /root/admin/react/start.sh
+echo "[INICIO] Ejecutando capa anterior (Nginx)..." | tee -a "$LOG"
+if [ -f /root/admin/nginx/start.sh ]; then
+  bash /root/admin/nginx/start.sh
 else
-  echo "[INICIO] ADVERTENCIA: No se encontró la capa React." | tee -a "$LOG"
+  echo "[INICIO] ADVERTENCIA: No se encontro la capa Nginx." | tee -a "$LOG"
 fi
 
 APP_DIR="/app/inicio"
-
 echo "[INICIO] Preparando entorno en $APP_DIR ..." | tee -a "$LOG"
 cd "$APP_DIR"
 

@@ -1,10 +1,10 @@
 services:
-  inicio:
+  react:
     image: adri/react:latest
     container_name: ctl_react
     build:
       context: ${CONTEXTO}
-      dockerfile: ./dockerfiles/4react/Dockerfile
+      dockerfile: ./dockerfiles/4react/dockerfile
     env_file: 
       - .env
     ports:

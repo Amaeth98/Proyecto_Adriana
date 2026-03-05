@@ -4,15 +4,16 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
   && apt-get install -y nodejs \
   && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app/inicio
+WORKDIR /app/web_basica_adriana
 
-COPY proyectos/inicio/package*.json ./
+COPY proyectos/web_basica_adriana/package*.json ./
 RUN npm install
 
-COPY proyectos/inicio ./
+COPY proyectos/web_basica_adriana ./
 
 RUN mkdir -p /root/admin/react
 COPY ./dockerfiles/4react/admin/start.sh /root/admin/react/start.sh
 RUN chmod +x /root/admin/react/start.sh
 
+EXPOSE 3000
 ENTRYPOINT ["/root/admin/react/start.sh"]

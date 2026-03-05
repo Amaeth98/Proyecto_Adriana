@@ -1,7 +1,15 @@
-FROM adri/react:latest
+FROM adri/nginx:latest
 
-# No hace falta Node, ya está en 4react
-# No copiamos el proyecto, ya está en /app/inicio en 4react
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+  && apt-get install -y nodejs \
+  && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app/inicio
+
+COPY proyectos/inicio/package*.json ./
+RUN npm install
+
+COPY proyectos/inicio ./
 
 RUN mkdir -p /root/admin/inicio
 COPY ./dockerfiles/5inicio/admin/start.sh /root/admin/inicio/start.sh

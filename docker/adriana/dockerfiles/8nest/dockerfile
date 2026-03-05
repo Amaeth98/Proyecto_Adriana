@@ -6,12 +6,13 @@ WORKDIR /app/api-pelis-pokemon
 COPY . /tmp/build-context
 
 RUN set -eux; \
-  APP_SRC=/tmp/build-context/proyectos/api-pelis-pokemon; \
-  if [ ! -d "$APP_SRC" ]; then \
-    echo "ERROR: no se encontro api-pelis-pokemon en /proyectos"; \
-    ls -la /tmp/build-context; \
+  APP_SRC="$(find /tmp/build-context -type d -name api-pelis-pokemon | head -n 1)"; \
+  if [ -z "$APP_SRC" ] || [ ! -d "$APP_SRC" ]; then \
+    echo "ERROR: no se encontro api-pelis-pokemon en el contexto Docker"; \
+    find /tmp/build-context -maxdepth 3 -type d | sort; \
     exit 1; \
   fi; \
+  echo "Usando APP_SRC=$APP_SRC"; \
   cp "$APP_SRC"/package*.json ./; \
   npm install; \
   cp -a "$APP_SRC"/. ./; \

@@ -17,6 +17,14 @@ fi
 
 echo "Usando directorio de proyectos: $PROJECTS_DIR"
 
+# Compatibilidad: crea alias entre proyecto/proyectos para evitar fallos en COPY.
+if [ "$PROJECTS_DIR" = "proyecto" ] && [ ! -e "$ROOT_DIR/proyectos" ]; then
+  ln -s proyecto "$ROOT_DIR/proyectos"
+fi
+if [ "$PROJECTS_DIR" = "proyectos" ] && [ ! -e "$ROOT_DIR/proyecto" ]; then
+  ln -s proyectos "$ROOT_DIR/proyecto"
+fi
+
 docker build -t adri/ubbase:latest -f ./dockerfiles/1ubbase/dockerfile .
 docker build -t adri/security:latest -f ./dockerfiles/2security/dockerfile .
 docker build -t adri/node:latest -f ./dockerfiles/6node/dockerfile .

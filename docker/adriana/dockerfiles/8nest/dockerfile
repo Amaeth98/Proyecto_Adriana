@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM adri/node:latest
 
-ARG PROJECTS_DIR=proyectos
+ARG PROJECTS_DIR=proyecto
 
 WORKDIR /app/api-pelis-pokemon
 

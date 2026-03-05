@@ -1,0 +1,77 @@
+services:
+  next:
+    image: adri/next:latest
+    container_name: ctl_next
+    build:
+      context: ${CONTEXTO}
+      dockerfile: ./dockerfiles/7next/dockerfile
+    env_file:
+      - .env
+    environment:
+      NEXT_PORT: 3443
+      SSL_SUBJECT: /CN=localhost
+    ports:
+      - "${PORT_NEXT_HTTPS}:3443"
+      - "${PORT_SSH_NEXT}:3456"
+    volumes:
+      - ./logs/next:/root/logs
+    networks:
+      - red_adriana
+    restart: always
+
+  nest:
+    image: adri/nest:latest
+    container_name: ctl_nest
+    build:
+      context: ${CONTEXTO}
+      dockerfile: ./dockerfiles/8nest/dockerfile
+    depends_on:
+      - postres
+    env_file:
+      - .env
+    environment:
+      PORT: 3444
+      NEST_SSL: "true"
+      SSL_SUBJECT: /CN=localhost
+      DB_HOST: postres
+      DB_PORT: 5432
+      DB_USER: ${POSTGRES_APP_USER}
+      DB_PASS: ${POSTGRES_APP_PASSWORD}
+      DB_NAME: ${POSTGRES_APP_DB}
+    ports:
+      - "${PORT_NEST_HTTPS}:3444"
+      - "${PORT_SSH_NEST}:3456"
+    volumes:
+      - ./logs/nest:/root/logs
+    networks:
+      - red_adriana
+    restart: always
+
+  postres:
+    image: adri/postres:latest
+    container_name: ctl_postres
+    build:
+      context: ${CONTEXTO}
+      dockerfile: ./dockerfiles/9postres/dockerfile
+    env_file:
+      - .env
+    environment:
+      PG_APP_DB: ${POSTGRES_APP_DB}
+      PG_APP_USER: ${POSTGRES_APP_USER}
+      PG_APP_PASSWORD: ${POSTGRES_APP_PASSWORD}
+    ports:
+      - "${PORT_POSTGRES}:5432"
+      - "${PORT_SSH_POSTRES}:3456"
+    volumes:
+      - ./logs/postres:/root/logs
+      - postres_data:/var/lib/postgresql
+    networks:
+      - red_adriana
+    restart: always
+
+networks:
+  red_adriana:
+    driver: bridge
+
+volumes:
+  postres_data:

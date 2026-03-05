@@ -1,0 +1,8 @@
+**/node_modules
+**/dist
+**/.next
+**/coverage
+**/logs
+.git
+.gitignore
+proyectos/id_ed25519

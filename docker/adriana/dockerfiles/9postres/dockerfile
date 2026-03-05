@@ -1,0 +1,12 @@
+FROM adri/security:latest
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  postgresql postgresql-contrib \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /root/admin/postres
+COPY ./dockerfiles/9postres/admin/start.sh /root/admin/postres/start.sh
+RUN chmod +x /root/admin/postres/start.sh
+
+EXPOSE 5432 3456
+ENTRYPOINT ["/root/admin/postres/start.sh"]

@@ -1,0 +1,85 @@
+const dictionaries = {
+  es: {
+    home: "Inicio",
+    generations: "Generaciones",
+    contact: "Contacto",
+    welcome: "Bienvenido a la Pokeapi",
+    number: "Número",
+    viewDetail: "Ver detalle",
+    close: "Cerrar",
+    loading: "Cargando...",
+    hp: "Vida",
+    attack: "Ataque",
+    defense: "Defensa",
+    contactText: (name: string) =>
+      `Esta web está generada en NEXT por el alumno ${name} del IES Cura Valera.`,
+    notFoundTitle: "Página no encontrada",
+    notFoundText: "¡Ups! Parece que este Pokémon se ha perdido.",
+    backHome: "Volver al inicio",
+    errorGeneration: "Error cargando la generación",
+    errorPokemon: "Error cargando el Pokémon",
+    retry: "Reintentar",
+    unknownError: "Ha ocurrido un error inesperado",
+    otros: "Otros",
+    anterior: "Anterior",
+    sigiente: "Siguiente",
+
+  },
+
+  en: {
+    home: "Home",
+    generations: "Generations",
+    contact: "Contact",
+    welcome: "Welcome to the Pokeapi",
+    number: "Number",
+    viewDetail: "View detail",
+    close: "Close",
+    loading: "Loading...",
+    hp: "HP",
+    attack: "Attack",
+    defense: "Defense",
+    contactText: (name: string) =>
+      `This website is generated in NEXT by student ${name} from IES Cura Valera.`,
+    notFoundTitle: "Page not found",
+    notFoundText: "Oops! Looks like this Pokémon got lost.",
+    backHome: "Back to home",
+    errorGeneration: "Error loading generation",
+    errorPokemon: "Error loading Pokémon",
+    retry: "Retry",
+    unknownError: "An unexpected error occurred",
+    otros: "Others",
+    anterior: "Previous",
+    sigiente: "Next",
+
+  },
+
+  fr: {
+    home: "Accueil",
+    generations: "Générations",
+    contact: "Contact",
+    welcome: "Bienvenue sur la Pokeapi",
+    number: "Numéro",
+    viewDetail: "Voir détail",
+    close: "Fermer",
+    loading: "Chargement...",
+    hp: "Vie",
+    attack: "Attaque",
+    defense: "Défense",
+    contactText: (name: string) =>
+      `Ce site est généré avec NEXT par l’élève ${name} de l’IES Cura Valera.`,
+    notFoundTitle: "Page introuvable",
+    notFoundText: "Oups! Ce Pokémon semble s’être perdu.",
+    backHome: "Retour à l’accueil",
+    errorGeneration: "Erreur lors du chargement de la génération",
+    errorPokemon: "Erreur lors du chargement du Pokémon",
+    retry: "Réessayer",
+    unknownError: "Une erreur inattendue s’est produite",
+    otros: "Autres",
+    anterior: "Précédent",
+    sigiente: "Suivant",
+
+  },
+};
+
+export type Language = keyof typeof dictionaries;
+export const getDictionary = (lang: Language) => dictionaries[lang];

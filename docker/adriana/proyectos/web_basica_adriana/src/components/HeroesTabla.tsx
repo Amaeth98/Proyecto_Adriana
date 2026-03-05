@@ -1,4 +1,4 @@
-import heroesData from "../Fichero_heroes.json";
+import heroesData from "../fichero_heroes.json";
 
 interface Hero {
   superhero: string;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import heroes from "../Fichero_heroes.json";
+import heroes from "../fichero_heroes.json";
 
 type Hero = {
   superhero: string;

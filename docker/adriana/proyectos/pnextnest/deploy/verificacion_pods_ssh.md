@@ -3,9 +3,12 @@
 ## 1) Levantar el despliegue
 
 ```bash
-cd ~/Proyecto_adriana/docker/adriana/proyecto/pnextnest/deploy
-chmod +x ./build_layers.sh
-./build_layers.sh
+cd ~/Proyecto_adriana/docker/adriana/proyectos/pnextnest/deploy
+cd ../../..
+docker build -t adri/ubbase:latest -f ./dockerfiles/1ubbase/dockerfile .
+docker build -t adri/security:latest -f ./dockerfiles/2security/dockerfile .
+docker build -t adri/node:latest -f ./dockerfiles/6node/dockerfile .
+cd proyectos/pnextnest/deploy
 docker compose up -d --build
 docker compose ps
 ```

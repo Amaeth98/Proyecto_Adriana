@@ -1,15 +1,22 @@
 # syntax=docker/dockerfile:1
 FROM adri/node:latest
 
-ARG PROJECTS_DIR=proyecto
-
 WORKDIR /app/pokeapi-adriana
 
-COPY ${PROJECTS_DIR}/pokeapi-adriana/package*.json ./
-RUN npm install
+COPY . /tmp/build-context
 
-COPY ${PROJECTS_DIR}/pokeapi-adriana ./
-RUN npm run build
+RUN set -eux; \
+  APP_SRC=/tmp/build-context/proyectos/pokeapi-adriana; \
+  if [ ! -d "$APP_SRC" ]; then \
+    echo "ERROR: no se encontro pokeapi-adriana en /proyectos"; \
+    ls -la /tmp/build-context; \
+    exit 1; \
+  fi; \
+  cp "$APP_SRC"/package*.json ./; \
+  npm install; \
+  cp -a "$APP_SRC"/. ./; \
+  npm run build; \
+  rm -rf /tmp/build-context
 
 RUN mkdir -p /root/admin/next
 COPY ./dockerfiles/7next/admin/start.sh /root/admin/next/start.sh

@@ -3,10 +3,10 @@ import "./App.css";
 type CardProps = { title: string; desc: string; href: string };
 
 const Card = ({ title, desc, href }: CardProps) => (
-  <a className="card" href={href} target="_blank" rel="noreferrer">
+  <a className="card" href={href}>
     <h2>{title}</h2>
     <p>{desc}</p>
-    <span>Abrir -</span>
+    <span>Abrir</span>
   </a>
 );
 

@@ -1,11 +1,14 @@
+# syntax=docker/dockerfile:1
 FROM adri/node:latest
+
+ARG PROJECTS_DIR=proyectos
 
 WORKDIR /app/api-pelis-pokemon
 
-COPY proyectos/api-pelis-pokemon/package*.json ./
+COPY ${PROJECTS_DIR}/api-pelis-pokemon/package*.json ./
 RUN npm install
 
-COPY proyectos/api-pelis-pokemon ./
+COPY ${PROJECTS_DIR}/api-pelis-pokemon ./
 RUN npm run build
 
 RUN mkdir -p /root/admin/nest

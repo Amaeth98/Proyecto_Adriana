@@ -3,7 +3,7 @@
 ## 1) Levantar el despliegue
 
 ```bash
-cd docker/adriana/proyectos/pnextnest/deploy
+cd ~/Proyecto_adriana/docker/adriana/proyecto/pnextnest/deploy
 chmod +x ./build_layers.sh
 ./build_layers.sh
 docker compose up -d --build

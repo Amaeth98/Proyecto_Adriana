@@ -1,11 +1,14 @@
+# syntax=docker/dockerfile:1
 FROM adri/node:latest
+
+ARG PROJECTS_DIR=proyectos
 
 WORKDIR /app/pokeapi-adriana
 
-COPY proyectos/pokeapi-adriana/package*.json ./
+COPY ${PROJECTS_DIR}/pokeapi-adriana/package*.json ./
 RUN npm install
 
-COPY proyectos/pokeapi-adriana ./
+COPY ${PROJECTS_DIR}/pokeapi-adriana ./
 RUN npm run build
 
 RUN mkdir -p /root/admin/next

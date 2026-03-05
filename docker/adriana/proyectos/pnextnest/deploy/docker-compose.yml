@@ -5,6 +5,8 @@ services:
     build:
       context: ${CONTEXTO}
       dockerfile: ./dockerfiles/7next/dockerfile
+      args:
+        PROJECTS_DIR: ${PROJECTS_DIR}
     env_file:
       - .env
     environment:
@@ -25,6 +27,8 @@ services:
     build:
       context: ${CONTEXTO}
       dockerfile: ./dockerfiles/8nest/dockerfile
+      args:
+        PROJECTS_DIR: ${PROJECTS_DIR}
     depends_on:
       - postres
     env_file:

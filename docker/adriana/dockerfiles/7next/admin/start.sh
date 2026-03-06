@@ -47,4 +47,4 @@ export SSL_KEY_PATH
 export SSL_CERT_PATH
 
 echo "[NEXT] Arrancando Next.js en HTTPS por 0.0.0.0:${NEXT_PORT}..." | tee -a "$LOG"
-exec node /root/admin/next/https-server.mjs
+exec node /app/pokeapi-adriana/https-server.mjs

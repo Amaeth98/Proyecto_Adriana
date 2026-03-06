@@ -13,10 +13,11 @@ services:
       - ./logs:/root/logs
     networks:
       pbase_network:
-        ipv4_address: 192.168.10.1
+        ipv4_address: 192.168.10.10
 networks:
   pbase_network:
     driver: bridge
     ipam:
       config:
         - subnet: 192.168.10.0/24
+          gateway: 192.168.10.1

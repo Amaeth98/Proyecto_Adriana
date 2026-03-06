@@ -18,6 +18,10 @@ async function bootstrap() {
     : await NestFactory.create(AppModule);
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
+  const expressApp = app.getHttpAdapter().getInstance() as {
+    set: (key: string, value: number) => void;
+  };
+  expressApp.set('json spaces', 2);
 
   await app.listen(Number(process.env.PORT ?? 3001), '0.0.0.0');
 }

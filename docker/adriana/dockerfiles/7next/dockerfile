@@ -3,21 +3,11 @@ FROM adri/node:latest
 
 WORKDIR /app/pokeapi-adriana
 
-COPY . /tmp/build-context
+COPY proyectos/pokeapi-adriana/package*.json ./
+RUN npm install
 
-RUN set -eux; \
-  APP_SRC="$(find /tmp/build-context -type d -name pokeapi-adriana | head -n 1)"; \
-  if [ -z "$APP_SRC" ] || [ ! -d "$APP_SRC" ]; then \
-    echo "ERROR: no se encontro pokeapi-adriana en el contexto Docker"; \
-    find /tmp/build-context -maxdepth 3 -type d | sort; \
-    exit 1; \
-  fi; \
-  echo "Usando APP_SRC=$APP_SRC"; \
-  cp "$APP_SRC"/package*.json ./; \
-  npm install; \
-  cp -a "$APP_SRC"/. ./; \
-  npm run build; \
-  rm -rf /tmp/build-context
+COPY proyectos/pokeapi-adriana ./
+RUN npm run build
 
 RUN mkdir -p /root/admin/next
 COPY ./dockerfiles/7next/admin/start.sh /root/admin/next/start.sh

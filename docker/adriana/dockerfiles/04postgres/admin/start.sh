@@ -24,6 +24,16 @@ PG_APP_PASSWORD="${PG_APP_PASSWORD:-adriana_pwd}"
 PG_APP_PASSWORD_SQL="$(printf "%s" "$PG_APP_PASSWORD" | sed "s/'/''/g")"
 
 echo "[POSTGRES] Inicializando cluster PostgreSQL ${PG_VERSION}..." | tee -a "$LOG"
+mkdir -p /run/postgresql
+chown postgres:postgres /run/postgresql
+
+PGDATA="/var/lib/postgresql/${PG_VERSION}/main"
+if [ ! -s "${PGDATA}/PG_VERSION" ]; then
+  echo "[POSTGRES] No existe cluster en ${PGDATA}; creando uno nuevo..." | tee -a "$LOG"
+  rm -rf "$PGDATA"
+  pg_createcluster "$PG_VERSION" main
+fi
+
 pg_ctlcluster "$PG_VERSION" main start
 
 DB_EXISTS="$(su - postgres -c "psql -tAc \"SELECT 1 FROM pg_database WHERE datname='${PG_APP_DB}'\"" | tr -d '[:space:]')"
@@ -58,5 +68,4 @@ grep -q "host all all ::/0 md5" "$PG_HBA" || echo "host all all ::/0 md5" >> "$P
 echo "[POSTGRES] Reiniciando PostgreSQL en foreground..." | tee -a "$LOG"
 pg_ctlcluster "$PG_VERSION" main stop
 
-PGDATA="/var/lib/postgresql/${PG_VERSION}/main"
 exec su - postgres -c "/usr/lib/postgresql/${PG_VERSION}/bin/postgres -D '${PGDATA}' -c config_file='${PG_CONF}'"

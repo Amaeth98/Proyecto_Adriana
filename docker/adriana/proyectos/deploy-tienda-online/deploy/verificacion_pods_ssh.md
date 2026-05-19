@@ -23,21 +23,21 @@ curl -k https://localhost:3444/api/products
 ## 3) Entrar por SSH en cada pod/contenedor
 
 ```bash
-ssh adriana@localhost -p 45681
-ssh adriana@localhost -p 45680
-ssh adriana@localhost -p 45679
+ssh deploy@localhost -p 45681
+ssh deploy@localhost -p 45680
+ssh deploy@localhost -p 45679
 ```
 
 ## 4) Verificar usuario y autenticacion dentro de cada pod
 
 ```bash
 whoami
-id adriana
+id deploy
 sudo -l
 ```
 
 Resultado esperado:
-- El usuario `adriana` existe.
+- El usuario `deploy` existe.
 - Tiene permisos sudo (NOPASSWD).
 - Se entra por SSH con el usuario creado en la capa base.
 

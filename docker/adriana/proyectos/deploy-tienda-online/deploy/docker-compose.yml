@@ -48,6 +48,8 @@ services:
       s02_security:
         condition: service_completed_successfully
     environment:
+      USUARIO: ${USUARIO}
+      PASSWORD: ${PASSWORD}
       PG_APP_DB: ${POSTGRES_APP_DB}
       PG_APP_USER: ${POSTGRES_APP_USER}
       PG_APP_PASSWORD: ${POSTGRES_APP_PASSWORD}
@@ -78,6 +80,8 @@ services:
       s04_postgres:
         condition: service_healthy
     environment:
+      USUARIO: ${USUARIO}
+      PASSWORD: ${PASSWORD}
       PORT: 3444
       NEST_SSL: "true"
       SSL_SUBJECT: /CN=localhost
@@ -112,6 +116,8 @@ services:
       s05_nest:
         condition: service_started
     environment:
+      USUARIO: ${USUARIO}
+      PASSWORD: ${PASSWORD}
       NEXT_PORT: 3443
       SSL_SUBJECT: /CN=localhost
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}

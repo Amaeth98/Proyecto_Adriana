@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title desc">
+  <title id="title">Setas bosque mini</title>
+  <desc id="desc">Conjunto de tres figuras pequenas de setas de bosque.</desc>
+  <rect width="800" height="520" fill="#eef3e5"/>
+  <path d="M0 424c142-69 276-28 398-63 137-39 242-9 402 65v94H0z" fill="#c7d8b5"/>
+  <ellipse cx="400" cy="441" rx="300" ry="45" fill="#9fb082" opacity=".55"/>
+  <g>
+    <path d="M200 288c13-58 113-58 126 0l18 116c5 36-163 36-158 0z" fill="#ead3b8"/>
+    <path d="M116 286c24-86 274-86 300 0 9 31-47 66-149 66-104 0-159-34-151-66z" fill="#bf5b3f"/>
+    <circle cx="211" cy="261" r="16" fill="#fff8ea"/>
+    <circle cx="291" cy="245" r="14" fill="#fff8ea"/>
+    <circle cx="331" cy="295" r="12" fill="#fff8ea"/>
+  </g>
+  <g>
+    <path d="M418 245c14-62 119-62 133 0l18 154c6 42-174 42-168 0z" fill="#f2dfc6"/>
+    <path d="M313 241c29-100 336-100 365 0 10 36-60 75-182 75-124 0-194-39-183-75z" fill="#6d4f37"/>
+    <circle cx="423" cy="220" r="17" fill="#fff8ea"/>
+    <circle cx="522" cy="204" r="15" fill="#fff8ea"/>
+    <circle cx="579" cy="258" r="13" fill="#fff8ea"/>
+  </g>
+  <g>
+    <path d="M584 317c10-45 88-45 99 0l13 85c5 28-126 28-122 0z" fill="#ecd8c2"/>
+    <path d="M520 315c18-65 217-65 236 0 7 24-37 49-118 49-82 0-124-25-118-49z" fill="#d49243"/>
+    <circle cx="609" cy="298" r="12" fill="#fff8ea"/>
+    <circle cx="674" cy="313" r="10" fill="#fff8ea"/>
+  </g>
+</svg>

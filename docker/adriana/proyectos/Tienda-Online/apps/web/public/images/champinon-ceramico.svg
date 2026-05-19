@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title desc">
+  <title id="title">Champinon ceramico</title>
+  <desc id="desc">Figura de champinon ceramico en tonos crema.</desc>
+  <rect width="800" height="520" fill="#fbf6eb"/>
+  <ellipse cx="400" cy="430" rx="250" ry="44" fill="#d7c3a8"/>
+  <path d="M313 218c17-73 153-73 174 0l32 177c9 52-247 52-238 0z" fill="#efe0cc"/>
+  <path d="M162 243c23-93 145-156 254-146 112 10 207 69 225 146 12 51-83 88-239 88-158 0-252-37-240-88z" fill="#d8c1a4"/>
+  <path d="M171 257c72 42 379 42 459 0-21 55-103 89-229 89-128 0-209-34-230-89z" fill="#b99775" opacity=".36"/>
+  <path d="M322 398c48 18 109 18 158 0" fill="none" stroke="#c3a17d" stroke-width="10" stroke-linecap="round"/>
+  <g fill="#f8eddf" opacity=".85">
+    <ellipse cx="316" cy="190" rx="47" ry="22"/>
+    <ellipse cx="452" cy="172" rx="55" ry="24"/>
+    <ellipse cx="531" cy="235" rx="43" ry="20"/>
+  </g>
+</svg>

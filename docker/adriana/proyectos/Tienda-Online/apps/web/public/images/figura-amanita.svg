@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title desc">
+  <title id="title">Figura Amanita roja</title>
+  <desc id="desc">Figura decorativa de seta amanita roja sobre una base natural.</desc>
+  <rect width="800" height="520" fill="#f7f1e6"/>
+  <ellipse cx="400" cy="438" rx="230" ry="42" fill="#d8c2a8"/>
+  <path d="M331 222c15-57 120-57 138 0l23 170c7 51-189 51-181 0z" fill="#f5e5d0"/>
+  <path d="M185 245c31-117 396-117 430 0 12 42-68 89-213 89-148 0-229-48-217-89z" fill="#b5332c"/>
+  <path d="M195 260c82 48 331 48 411-1-16 52-92 88-203 88-113 0-190-36-208-87z" fill="#8f2825" opacity=".35"/>
+  <g fill="#fff8ec">
+    <circle cx="291" cy="214" r="24"/>
+    <circle cx="397" cy="183" r="20"/>
+    <circle cx="505" cy="224" r="27"/>
+    <circle cx="358" cy="263" r="18"/>
+    <circle cx="468" cy="286" r="16"/>
+  </g>
+  <path d="M322 407c45 20 109 20 156 0" fill="none" stroke="#cda985" stroke-width="10" stroke-linecap="round"/>
+</svg>

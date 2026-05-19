@@ -1,0 +1,132 @@
+services:
+  s01_ubbase:
+    image: adri/ubbase:latest
+    container_name: ctl_01_ubbase
+    build:
+      context: ${CONTEXTO}
+      dockerfile: ./dockerfiles/01ubbase/dockerfile
+    environment:
+      USUARIO: ${USUARIO}
+      PASSWORD: ${PASSWORD}
+    command: ["true"]
+
+  s02_security:
+    image: adri/security:latest
+    container_name: ctl_02_security
+    build:
+      context: ${CONTEXTO}
+      dockerfile: ./dockerfiles/02security/dockerfile
+    depends_on:
+      s01_ubbase:
+        condition: service_completed_successfully
+    environment:
+      USUARIO: ${USUARIO}
+      PASSWORD: ${PASSWORD}
+    command: ["true"]
+
+  s03_node:
+    image: adri/node:latest
+    container_name: ctl_03_node
+    build:
+      context: ${CONTEXTO}
+      dockerfile: ./dockerfiles/03node/dockerfile
+    depends_on:
+      s02_security:
+        condition: service_completed_successfully
+    environment:
+      USUARIO: ${USUARIO}
+      PASSWORD: ${PASSWORD}
+    command: ["true"]
+
+  s04_postgres:
+    image: adri/postgres:latest
+    container_name: ctl_04_postgres
+    build:
+      context: ${CONTEXTO}
+      dockerfile: ./dockerfiles/04postgres/dockerfile
+    depends_on:
+      s02_security:
+        condition: service_completed_successfully
+    environment:
+      PG_APP_DB: ${POSTGRES_APP_DB}
+      PG_APP_USER: ${POSTGRES_APP_USER}
+      PG_APP_PASSWORD: ${POSTGRES_APP_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -p 5432"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    ports:
+      - "${PORT_POSTGRES}:5432"
+      - "${PORT_SSH_POSTGRES}:3456"
+    volumes:
+      - ./logs/04_postgres:/root/logs
+      - postgres_data:/var/lib/postgresql
+    networks:
+      - red_adriana
+    restart: always
+
+  s05_nest:
+    image: adri/nest:latest
+    container_name: ctl_05_nest
+    build:
+      context: ${CONTEXTO}
+      dockerfile: ./dockerfiles/05nest/dockerfile
+    depends_on:
+      s03_node:
+        condition: service_completed_successfully
+      s04_postgres:
+        condition: service_healthy
+    environment:
+      PORT: 3444
+      NEST_SSL: "true"
+      SSL_SUBJECT: /CN=localhost
+      DB_HOST: s04_postgres
+      DB_PORT: 5432
+      DB_USER: ${POSTGRES_APP_USER}
+      DB_PASSWORD: ${POSTGRES_APP_PASSWORD}
+      DB_NAME: ${POSTGRES_APP_DB}
+      JWT_SECRET: ${JWT_SECRET}
+      FRONTEND_URL: ${FRONTEND_URL}
+      TYPEORM_SYNC: ${TYPEORM_SYNC:-true}
+    ports:
+      - "${PORT_NEST_HTTPS}:3444"
+      - "${PORT_SSH_NEST}:3456"
+    volumes:
+      - ./logs/05_nest:/root/logs
+    networks:
+      - red_adriana
+    restart: always
+
+  s06_next:
+    image: adri/next:latest
+    container_name: ctl_06_next
+    build:
+      context: ${CONTEXTO}
+      dockerfile: ./dockerfiles/06next/dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+    depends_on:
+      s03_node:
+        condition: service_completed_successfully
+      s05_nest:
+        condition: service_started
+    environment:
+      NEXT_PORT: 3443
+      SSL_SUBJECT: /CN=localhost
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+    ports:
+      - "${PORT_NEXT_HTTPS}:3443"
+      - "${PORT_SSH_NEXT}:3456"
+    volumes:
+      - ./logs/06_next:/root/logs
+    networks:
+      - red_adriana
+    restart: always
+
+networks:
+  red_adriana:
+    driver: bridge
+
+volumes:
+  postgres_data:

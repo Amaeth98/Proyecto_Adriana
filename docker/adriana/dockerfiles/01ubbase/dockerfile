@@ -1,0 +1,17 @@
+FROM ubuntu
+
+RUN apt-get update && apt-get install -y \
+curl git sudo nano net-tools iproute2 openssh-server && \
+ rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /root/admin/base
+WORKDIR /root/admin/base
+RUN mkdir ./ssh
+COPY ./common/id_rsa.pub  ./ssh/id_rsa.pub
+COPY ./dockerfiles/01ubbase/admin/start.sh ./start.sh
+COPY ./dockerfiles/01ubbase/admin/user/mainuser.sh ./mainuser.sh
+COPY ./dockerfiles/01ubbase/admin/ssh/mainssh.sh ./mainssh.sh
+COPY ./dockerfiles/01ubbase/admin/sudo/mainsudo.sh ./mainsudo.sh
+RUN chmod +x ./start.sh ./mainuser.sh ./mainssh.sh ./mainsudo.sh
+
+ENTRYPOINT [ "./start.sh" ]

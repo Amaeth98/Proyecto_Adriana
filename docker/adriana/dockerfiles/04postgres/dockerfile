@@ -1,0 +1,12 @@
+FROM adri/security:latest
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  postgresql postgresql-contrib \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /root/admin/postgres
+COPY ./dockerfiles/04postgres/admin/start.sh /root/admin/postgres/start.sh
+RUN chmod +x /root/admin/postgres/start.sh
+
+EXPOSE 5432 3456
+ENTRYPOINT ["/root/admin/postgres/start.sh"]

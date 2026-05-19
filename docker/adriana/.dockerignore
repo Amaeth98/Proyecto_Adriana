@@ -1,8 +1,11 @@
-**/node_modules
-**/dist
-**/.next
-**/coverage
-**/logs
 .git
-.gitignore
+**/.git
+**/node_modules
+**/.next
+**/dist
+**/coverage
+**/*.log
+**/*.tsbuildinfo
+**/.env
+!proyectos/pnextnest/deploy/.env
 proyectos/id_ed25519

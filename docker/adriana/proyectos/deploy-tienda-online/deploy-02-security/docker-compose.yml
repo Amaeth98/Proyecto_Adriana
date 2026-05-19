@@ -1,0 +1,11 @@
+services:
+  s02_security:
+    image: adri/security:latest
+    container_name: ctl_02_security
+    build:
+      context: ../../..
+      dockerfile: ./dockerfiles/02security/dockerfile
+    environment:
+      USUARIO: deploy
+      PASSWORD: deploy
+    command: ["true"]

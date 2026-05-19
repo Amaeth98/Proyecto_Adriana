@@ -1,0 +1,36 @@
+services:
+  s04_postgres:
+    image: adri/postgres:latest
+    container_name: ctl_04_postgres
+    build:
+      context: ../../..
+      dockerfile: ./dockerfiles/04postgres/dockerfile
+    environment:
+      USUARIO: deploy
+      PASSWORD: deploy
+      PG_APP_DB: tienda_online
+      PG_APP_USER: usuario
+      PG_APP_PASSWORD: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -p 5432"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    ports:
+      - "5432:5432"
+      - "45681:3456"
+    volumes:
+      - ./logs/04_postgres:/root/logs
+      - postgres_data:/var/lib/postgresql
+    networks:
+      - red_adriana
+    restart: always
+
+networks:
+  red_adriana:
+    name: red_adriana
+    external: true
+
+volumes:
+  postgres_data:
+    name: deploy_postgres_data

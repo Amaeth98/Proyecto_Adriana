@@ -1,0 +1,11 @@
+services:
+  s03_node:
+    image: adri/node:latest
+    container_name: ctl_03_node
+    build:
+      context: ../../..
+      dockerfile: ./dockerfiles/03node/dockerfile
+    environment:
+      USUARIO: deploy
+      PASSWORD: deploy
+    command: ["true"]

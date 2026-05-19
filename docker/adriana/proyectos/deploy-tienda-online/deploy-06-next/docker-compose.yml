@@ -1,0 +1,28 @@
+services:
+  s06_next:
+    image: adri/next:latest
+    container_name: ctl_06_next
+    build:
+      context: ../../..
+      dockerfile: ./dockerfiles/06next/dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: https://fungi.amaeth.com/api
+    environment:
+      USUARIO: deploy
+      PASSWORD: deploy
+      NEXT_PORT: 3443
+      SSL_SUBJECT: /CN=localhost
+      NEXT_PUBLIC_API_URL: https://fungi.amaeth.com/api
+    ports:
+      - "3443:3443"
+      - "45679:3456"
+    volumes:
+      - ./logs/06_next:/root/logs
+    networks:
+      - red_adriana
+    restart: always
+
+networks:
+  red_adriana:
+    name: red_adriana
+    external: true

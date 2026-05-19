@@ -1,0 +1,34 @@
+services:
+  s05_nest:
+    image: adri/nest:latest
+    container_name: ctl_05_nest
+    build:
+      context: ../../..
+      dockerfile: ./dockerfiles/05nest/dockerfile
+    environment:
+      USUARIO: deploy
+      PASSWORD: deploy
+      PORT: 3444
+      NEST_SSL: "true"
+      SSL_SUBJECT: /CN=localhost
+      DB_HOST: s04_postgres
+      DB_PORT: 5432
+      DB_USER: usuario
+      DB_PASSWORD: postgres
+      DB_NAME: tienda_online
+      JWT_SECRET: 4dfc1f8e8a8b4d4fa7d7c0d9c9e2f3b1a6e7c5d8f9a2b3c4d5e6f7a8b9c0d1e2
+      FRONTEND_URL: https://fungi.amaeth.com
+      TYPEORM_SYNC: "true"
+    ports:
+      - "3444:3444"
+      - "45680:3456"
+    volumes:
+      - ./logs/05_nest:/root/logs
+    networks:
+      - red_adriana
+    restart: always
+
+networks:
+  red_adriana:
+    name: red_adriana
+    external: true

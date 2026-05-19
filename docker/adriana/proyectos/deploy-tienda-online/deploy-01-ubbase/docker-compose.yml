@@ -1,0 +1,11 @@
+services:
+  s01_ubbase:
+    image: adri/ubbase:latest
+    container_name: ctl_01_ubbase
+    build:
+      context: ../../..
+      dockerfile: ./dockerfiles/01ubbase/dockerfile
+    environment:
+      USUARIO: deploy
+      PASSWORD: deploy
+    command: ["true"]

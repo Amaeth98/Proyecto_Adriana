@@ -30,7 +30,7 @@ chown postgres:postgres /run/postgresql
 PGDATA="/var/lib/postgresql/${PG_VERSION}/main"
 if [ ! -s "${PGDATA}/PG_VERSION" ]; then
   echo "[POSTGRES] No existe cluster en ${PGDATA}; creando uno nuevo..." | tee -a "$LOG"
-  rm -rf "$PGDATA"
+  pg_dropcluster --stop "$PG_VERSION" main >/dev/null 2>&1 || true
   pg_createcluster "$PG_VERSION" main
 fi
 
